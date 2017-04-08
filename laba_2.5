@@ -1,0 +1,15 @@
+#include "stdafx.h"
+
+int main()
+{
+	int c, counter = 0;
+
+	while ((c = getchar()) != EOF) {
+		if (c == '.' || c == ',' || c == '!' || c == '?')
+			counter = ++counter;
+		else
+			continue;
+	}
+	printf("%d", counter);
+    return 0;
+}
