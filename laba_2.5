@@ -1,16 +1,47 @@
-// Посчитать количество знаков препинания в строке
-#include "stdafx.h"
+#include <stdio.h>
+#include <locale.h>
+//Посчитать количество знаков препинания в строке
 
-int main()
+#define N 100
+
+int arr[N];
+
+main()
 {
-	int c, counter = 0;
+	setlocale(LC_ALL, "RUS");
 
-	while ((c = getchar()) != EOF) {
-		if (c == '.' || c == ',' || c == '!' || c == '?')
-			counter = ++counter;
-		else
-			continue;
+	int i, c = i = 0;
+	int *a;
+	a = &arr;
+	mass(a);
+
+	while ((*a) != 0) {
+		if (*a == '.' || *a == ',' || *a == '!' || *a == '?')
+			++c;
+		++a;
 	}
-	printf("%d", counter);
-    return 0;
+	printf("\nкол-во знаков препинания в строке: ");
+	print_mass(arr);
+	printf("\nравно : %d\n", c);
+}
+// поэлементная запись в массив
+int mass(int *a)
+{
+	int c, i;
+	i = 0;
+	while ((c = getchar()) != EOF) {
+		a[i] = c;
+		++i;
+	}
+	return;
+}
+// поэлементный вывод 
+int print_mass(int *a)
+{
+	int i = 0;
+	while (arr[i] != '\n') {
+		putchar(arr[i]);
+		++i;
+	}
+	return;
 }
