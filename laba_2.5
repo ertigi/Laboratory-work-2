@@ -11,18 +11,17 @@ main()
 	setlocale(LC_ALL, "RUS");
 
 	int i, c = i = 0;
-	int *a;
-	a = &arr;
-	mass(a);
+	mass(arr);
 
-	while ((*a) != 0) {
-		if (*a == '.' || *a == ',' || *a == '!' || *a == '?')
+	while ((arr[i]) != 0) {
+		if (arr[i] == '.' || arr[i] == ',' || arr[i] == '!' || arr[i] == '?')
 			++c;
-		++a;
+		++i;
 	}
+
 	printf("\nкол-во знаков препинания в строке: ");
 	print_mass(arr);
-	printf("\nравно : %d\n", c);
+	printf("\nРавно : %d\n", c);
 }
 // поэлементная запись в массив
 int mass(int *a)
