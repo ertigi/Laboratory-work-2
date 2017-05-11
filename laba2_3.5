@@ -1,0 +1,81 @@
+//Отсортировать массив по возрастанию элементов первой строки
+
+#include <stdio.h>
+
+#define N 3
+#define M 7
+
+int main()
+{
+	int **arr;
+	int **arrr;
+
+	arr = (int**)malloc(N * sizeof(int));
+	for (int i = 0; i < N; i++)
+		arr[i] = (int*)malloc(M * sizeof(int));
+
+	arrr = (int**)malloc(N * sizeof(int));
+	for (int i = 0; i < N; i++)
+		arrr[i] = (int*)malloc(M * sizeof(int));
+
+	q1(arr);
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			arrr[i][j] = arr[i][j];
+		}
+	}
+
+	shift(arrr);
+	q2(arrr);
+
+	return 0;
+}
+
+int q1(int **arr)
+{
+	for (int j = 0; j < N; j++)
+	{
+		for (int i = 0; i < M; i++)
+		{
+			printf("[%d][%d] = ", j, i);
+			scanf_s("%u", &arr[j][i]);
+		}
+	}
+	return 0;
+}
+
+int q2(int **arr)
+{
+	for (int j = 0; j < N; j++)
+	{
+		for (int i = 0; i < M; i++)
+		{
+			printf("[%d][%d] = %2.d ", j, i, arr[j][i]);
+		}
+		printf("\n");
+	}
+	return 0;
+}
+
+int shift(int **arr)
+{
+	for (int i = M; i >= 0; i--)
+	{
+		for (int j = 0; j < (M - 1); j++)
+		{
+			if (arr[0][j] > arr[0][j + 1])
+			{
+				for (int q = 0; q < N; q++)
+				{
+					int c = arr[q][j];
+					arr[q][j] = arr[q][j + 1];
+					arr[q][j + 1] = c;
+				}
+			}
+		}
+	}
+	return 0;
+}
