@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+//Удалить из массива элементы таким образом, чтобы разность соседних элементов была не менее 5
+
+#define N 10
+
+int Input_array(int *arr)
+{
+	int i;
+
+	for (i = 0; i < N; i++)
+	{
+		printf("arr[%d] = ", i);
+		scanf_s("%d", &arr[i]);
+
+	}
+	return i;
+}
+
+int Output_array(int *arr, int c)
+{
+	for (int i = 0; i < c; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+	return 0;
+}
+
+int Picking_array(int *arr, int c)
+{
+	int p = 0, c1 = 0, c2 = c;
+	for (int i = 0; i < N; i++)
+	{
+		c1 = (arr[p] - arr[p + 1]);
+
+		if (c1 < 0){
+			c1 = Abs(c1);
+		}
+		if (c1 < 5)
+		{
+			for (int q = (p + 1); q < c2; q++)
+			{
+				arr[q] = arr[q + 1];
+				if (q == (c2 - 1))
+					arr[q + 1] = 0;
+			}
+			c2--;
+		}
+
+		else if (c1 >= 5)
+			p++;
+	}
+
+	return c2;
+}
+
+int Abs(int c)
+{
+	int c1 = 0 - c;
+
+	return c1;
+}
+
+int main()
+{
+
+	int mas1[N] = { 0 };
+	int c = 0;
+
+	c = Input_array(&mas1[0]);
+
+	c = Picking_array(&mas1[0], c);
+
+	Output_array(mas1, c);
+
+	exit(1);
+}
