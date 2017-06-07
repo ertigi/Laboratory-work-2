@@ -42,15 +42,16 @@ int main()
 		else
 		{
 			if (c1 != 0)
+			{
 				c2++;
+			}
 			c1 = 0;
-
 		}
 	}
+	
 	printf("kol-wo plobelov v ctroke: ");
 	Output(arr, c);
 	printf("\nrawno: %d", c2);
 	
 	return 0;
-
 }
