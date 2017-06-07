@@ -1,0 +1,51 @@
+#include "stdio.h"
+#include "stdlib.h"
+#include "stdafx.h"
+#define N 100
+
+int arr[N];
+
+int Input(int *a)
+{
+	int c, i;
+	i = 0;
+	while ((c = getchar()) != EOF) {
+		a[i] = c;
+		++i;
+	}
+	return i;
+}
+int Output(int *a, int c)
+{
+	int i = 0;
+	for (int i = 0; i < c; i++)
+		putchar(arr[i]);
+	return NULL;
+}
+
+int main()
+{
+	int c = 0, c1 = 0, c2 = 0;
+	c = Input(arr);
+
+	for (int i = 0; i < c; i++)
+	{
+		if (arr[i] == ' ') 
+		{
+			if (c1 == 1) 
+			{
+				c2++;
+				continue;
+			}
+			c1 = 1;
+		}
+		else
+			c1 = 0;
+	}
+	printf("kol-wo plobelov v ctroke: ");
+	Output(arr, c);
+	printf("\nrawno: %d", c2);
+	
+	return 0;
+
+}
