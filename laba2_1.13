@@ -1,6 +1,4 @@
 #include "stdio.h"
-#include "stdlib.h"
-#include "stdafx.h"
 #define N 100
 
 int arr[N];
@@ -41,17 +39,13 @@ int main()
 		}
 		else
 		{
-			if (c1 != 0)
-			{
-				c2++;
-			}
 			c1 = 0;
 		}
 	}
 	
 	printf("kol-wo plobelov v ctroke: ");
 	Output(arr, c);
-	printf("\nrawno: %d", c2);
+	printf("\nrawno: %d\n", c2);
 	
 	return 0;
 }
