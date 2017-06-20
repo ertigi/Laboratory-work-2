@@ -1,0 +1,105 @@
+#include "stdio.h"
+#include "stdlib.h"
+
+typedef struct
+{
+	int x,
+		y,
+		number;
+}point;
+
+void input_array(int **arr, int n, int m)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			printf("arr[%d][%d] = ", i, j);
+			scanf_s("%d", &arr[i][j]);
+		}
+	}
+}
+
+void output_point(point *arr, int c)
+{
+	for (int i = 0; i < c; i++)
+	{
+		printf("x = %d; y = %d; number = %d\n", arr[i].x, arr[i].y, arr[i].number);
+	}
+}
+
+int main()
+{
+	int n, m,
+		i, j, z,
+		c = 1, c1 = 0;
+
+	point pmax, pmin, ppmax, ppmin;
+
+	point *parray;
+
+	printf("n, m = ");
+	scanf_s("%d%d", &n, &m);
+
+	int **arr;
+	arr = (int**)malloc(n * sizeof(int));
+	for (i = 0; i < n; i++)
+		arr[i] = (int*)malloc(m * sizeof(int));
+
+	parray = (point*)malloc(c * sizeof(point));
+
+	input_array(arr, n, m);
+
+	for (i = 0; i < n; i++)
+	{
+		pmax.x = pmin.x = i;
+		pmax.y = pmin.y = 0;
+		pmax.number = pmin.number = arr[i][0];
+		for (j = 0; j < m; j++)
+		{
+			if (pmax.number < arr[i][j])
+			{
+				pmax.x = i;
+				pmax.y = j;
+				pmax.number = arr[i][j];
+			}
+			if (pmin.number > arr[i][j])
+			{
+				pmin.x = i;
+				pmin.y = j;
+				pmin.number = arr[i][j];
+			}
+		}
+		ppmax = pmax;
+		ppmin = pmin;
+		for (z = 0; z < n; z++)
+		{
+			if (pmax.number > arr[z][pmax.y])
+			{
+				pmax.x = z;
+				pmax.number = arr[z][pmax.y];
+			}
+			if (pmin.number < arr[z][pmin.y])
+			{
+				pmin.x = z;
+				pmin.number = arr[z][pmin.y];
+			}
+		}
+		if (pmax.x == ppmax.x & pmax.y == ppmax.y & pmax.number == ppmax.number)
+		{
+			parray[c1] = pmax;
+			parray = (point*)realloc(parray, ++c * sizeof(point));
+			c1++;
+		}
+		if (pmin.x == ppmin.x & pmin.y == ppmin.y & pmin.number == ppmin.number)
+		{
+			parray[c1] = pmin;
+			parray = (point*)realloc(parray, ++c * sizeof(point));
+			c1++;
+		}
+	}
+
+	output_point(parray, c1);
+
+    exit(1);
+}
